@@ -1,71 +1,53 @@
-# 🌌 Wondercraft - Simple Server Form & Tracking Console
+<p align="center">
+  <img src="./public/wondercraft.png" alt="Wondercraft Logo" width="96" height="96" style="border-radius: 16px;" />
+</p>
 
-Wondercraft is a clean and simple tool for server teams to collect configuration details from clients and show them a live, high-tech status board as their server is being set up.
+<h1 align="center">Wondercraft</h1>
+<p align="center"><b>Next-Generation Server Configuration & Diagnostic Tracking Console</b></p>
 
-No complex code setup is needed to understand how it works!
-
----
-
-## 🌟 What Wondercraft Does
-
-1. **Build Custom Forms:** Create questions for your clients (like text answers, dates, single choice, or checkboxes) using a simple form editor.
-2. **Collect Responses:** Send a public link to your clients to fill out.
-3. **Track Status:** Clients get a **Reference Code** (for example: `TKN-5897CRFC-0446`). They can paste this code into a tracking search bar to see a live visual timeline of their request (Queued -> Working -> Completed or Rejected).
-4. **Admin Dashboard:** Log in as an administrator to approve requests, update their status, and add other staff members.
-
----
-
-## 🔑 Default Administrator Login
-
-To log in and start building forms, use the following credentials:
-* **Login Link:** `http://localhost:3000/login`
-* **Email:** `sanpatel323@gmail.com`
-* **Password:** `Codecode21@`
+<p align="center">
+  <img src="https://img.shields.io/badge/Next.js-16-000000?style=for-the-badge&logo=next.js&logoColor=white" alt="Next.js" />
+  <img src="https://img.shields.io/badge/Tailwind_CSS-v4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white" alt="Tailwind CSS" />
+  <img src="https://img.shields.io/badge/MongoDB-Database-47A248?style=for-the-badge&logo=mongodb&logoColor=white" alt="MongoDB" />
+  <img src="https://img.shields.io/badge/TypeScript-Strict-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
+</p>
 
 ---
 
-## 🚀 How to Use Wondercraft (Easy Guide)
+Wondercraft is a sleek, professional web dashboard designed for server operations teams to collect system configuration checklists from clients, manage admin access levels, and track provisioning progress on a high-tech visual diagnostics timeline. 
 
-### 1. Build a Form
-* Go to the **Forms Console** in your Dashboard.
-* Click **Build New Form** (or **Add Canvas Field**).
-* Enter a title and description, choose your question types, and click **Save Form**.
-
-### 2. Share the Link
-* On your forms list, click the **Copy Link** icon. 
-* Send this link to your clients. When they submit the form, they will receive a unique **Tracking Token** (e.g. `TKN-XXXX`).
-
-### 3. Review Submissions & Update Status
-* In your dashboard, click **Review Request** next to any new submission.
-* Change the status to **Working** or **Completed** to update the client's timeline.
-
-### 4. Client Tracking
-* Clients can go to the **Track Ticket Status** page, enter their token, and see their live progress timeline.
+Built with a premium **Cyber Cyan dark-mode theme**, the interface features glassmorphism, glowing accents, and fluid transitions to deliver a state-of-the-art console experience.
 
 ---
 
-## ☁️ How to Deploy to Vercel (Simplified Steps)
+## 🌟 Key Capabilities
 
-To put this website online permanently using Vercel, follow these simple steps:
+* 🛠️ **Dynamic Form Canvas**
+  Build custom server specification templates on a responsive builder grid. Drag, reorder, toggle validation rules, and configure choice parameters on the fly using unified visual inputs.
 
-### Step 1: Set up your Database (MongoDB Atlas)
-1. Register for a free account at [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) and create a database.
-2. Under **Network Access**, click **Add IP Address** and select **Allow Access From Anywhere** (`0.0.0.0/0`). This is necessary so Vercel can connect to your database.
-3. Go to **Database Access** and create a database user and password.
-4. Copy your database connection link (looks like `mongodb+srv://...`).
+* 📡 **Live Diagnostic Pipeline**
+  Track incoming client request payloads inside the control console. Review specifications and update provisioning status in real-time.
 
-### Step 2: Initialize the Administrator Account
-1. Open your local project folder and paste your database connection link into the `.env` file next to `MONGODB_URI=`.
-2. Open your terminal and run:
-   ```bash
-   npm run db:seed
-   ```
-   *This registers your admin account in the database.*
+* 🔮 **Interactive Ticket Tracking**
+  Clients receive a unique reference token upon submission, allowing them to track server setup progress on a high-tech status board containing live progress steps:
+  * **Queued for Auditing**
+  * **Active Evaluation**
+  * **Deployment Complete / Request Denied**
 
-### Step 3: Deploy on Vercel
-1. Upload your code to a GitHub repository.
-2. Log into [Vercel](https://vercel.com) and import your repository.
-3. Under **Environment Variables**, add these two settings:
-   * **`MONGODB_URI`**: *Your MongoDB Atlas connection link*
-   * **`JWT_SECRET`**: `Codecode21@` *(or any secret password of your choice)*
-4. Click **Deploy**! Your website is now live!
+* 🔒 **Staff Roster Console**
+  Super-administrators can manage access credentials, register new admin profiles, or pause/terminate existing console accounts dynamically.
+
+---
+
+## 🎨 Visual Design Tokens
+
+* **Cyberpunk Aesthetic:** Deep slate backdrops combined with glowing neon-cyan indicators.
+* **Responsive Layouts:** Sidebar and grid structures optimized for mobile, tablet, and widescreen monitors.
+* **Fluid Motion:** Satisfying micro-interactions, canvas additions, and page route transitions powered by Framer Motion.
+* **Clean Scrollbars:** Customized thin, color-matched scrollbars throughout the application.
+
+---
+
+<p align="center">
+  <sub>Wondercraft Server Operations. Built with Next.js, Tailwind CSS, Framer Motion, and MongoDB.</sub>
+</p>

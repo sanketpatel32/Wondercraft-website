@@ -30,13 +30,13 @@ async function seed() {
     console.log("Connecting to database to seed Super Admin...");
     await mongoose.connect(uri);
     
-    const hashedPassword = await bcrypt.hash("Codecode21@", 10);
+    const hashedPassword = await bcrypt.hash("AdminPassword123!", 10);
     
     const superAdmin = await User.findOneAndUpdate(
       { role: "superadmin" },
       {
         name: "Super Admin",
-        email: "sanpatel323@gmail.com",
+        email: "admin@wondercraft.com",
         password: hashedPassword,
         status: "active",
       },
