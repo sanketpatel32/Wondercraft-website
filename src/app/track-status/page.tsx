@@ -234,76 +234,110 @@ export default function TrackStatusPage() {
                         <span className="font-sans">{formatSubmittedAt(submission.createdAt)}</span>
                       </p>
                     </div>
-
-                    <div className="relative px-6 sm:px-7 pb-6 pt-4 border-t border-zinc-800/60">
-                      <div className="flex items-start justify-between max-w-sm mx-auto">
+                    {/* Progress timeline */}
+                    <div className="px-5 pb-8 pt-6 border-t border-zinc-900/60 relative">
+                      
+                      {/* Horizontal timeline (Desktop/Tablet) */}
+                      <div className="hidden sm:flex justify-between items-center max-w-xs mx-auto relative pb-6">
                         {statusSteps.map((step, idx) => {
-                          const isCompletedStep =
-                            idx < currentIdx || submission.status === "completed";
+                          const isCompletedStep = idx < currentIdx || submission.status === "completed";
                           const isActiveStep = idx === currentIdx && !isRejected;
 
                           return (
                             <React.Fragment key={step.key}>
                               {idx > 0 && (
-                                <div className="flex-1 mx-2 sm:mx-3 mt-4">
-                                  <div className="h-[3px] rounded-full bg-zinc-800 overflow-hidden">
-                                    <div
-                                      className={`h-full rounded-full transition-all duration-700 ${
-                                        idx <= currentIdx || submission.status === "completed"
-                                          ? `w-full ${s.stepLine}`
-                                          : "w-0"
-                                      }`}
-                                    />
-                                  </div>
-                                </div>
+                                <div className={`flex-1 h-[3px] mx-2 rounded-full transition-all duration-500 ${
+                                  isCompletedStep ? "bg-gradient-to-r from-cyan-500 to-cyan-400 shadow-[0_0_10px_rgba(6,182,212,0.5)]" : "bg-zinc-800"
+                                }`} />
                               )}
-
-                              <div className="flex flex-col items-center gap-2.5 min-w-[4.5rem]">
-                                <div
-                                  className={`w-9 h-9 rounded-full flex items-center justify-center text-xs font-bold transition-all duration-300 ${
-                                    isCompletedStep
-                                      ? s.stepDone
-                                      : isActiveStep
-                                      ? `bg-zinc-950 border-2 ${s.stepActive}`
-                                      : "bg-zinc-950 text-zinc-600 border border-zinc-800"
-                                  }`}
-                                >
-                                  {isCompletedStep ? (
-                                    <CheckCircle2 className="w-4 h-4" />
-                                  ) : (
-                                    idx + 1
-                                  )}
+                              
+                              <div className="flex flex-col items-center relative">
+                                <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all duration-300 ${
+                                  isCompletedStep
+                                    ? "bg-cyan-500 text-zinc-950 shadow-[0_0_15px_rgba(6,182,212,0.6)] scale-105"
+                                    : isActiveStep
+                                    ? "bg-zinc-950 text-cyan-400 border-2 border-cyan-500 shadow-[0_0_15px_rgba(6,182,212,0.4)] animate-pulse"
+                                    : "bg-zinc-950 text-zinc-650 border border-zinc-800"
+                                }`}>
+                                  {idx + 1}
                                 </div>
-                                <span
-                                  className={`text-[10px] uppercase font-bold tracking-widest text-center leading-tight ${
-                                    isActiveStep
-                                      ? s.stepLabelActive
-                                      : isCompletedStep
-                                      ? "text-zinc-400"
-                                      : "text-zinc-600"
-                                  }`}
-                                >
-                                  {step.label}
+                                <span className={`text-[9px] uppercase font-bold tracking-widest mt-2 whitespace-nowrap absolute top-8.5 ${
+                                  isActiveStep ? "text-cyan-400 font-black" : "text-zinc-500"
+                                }`}>
+                                  {step.key === "in-progress" ? "Working" : step.label}
                                 </span>
                               </div>
                             </React.Fragment>
                           );
                         })}
 
-                        {isRejected && (
+                        {submission.status === "rejected" && (
                           <>
-                            <div className="flex-1 mx-2 sm:mx-3 mt-4">
-                              <div className="h-[3px] rounded-full bg-rose-500/25" />
-                            </div>
-                            <div className="flex flex-col items-center gap-2.5 min-w-[4.5rem]">
-                              <div className="w-9 h-9 rounded-full bg-rose-500/15 text-rose-400 border-2 border-rose-500/40 flex items-center justify-center text-xs font-bold shadow-[0_0_14px_rgba(244,63,94,0.25)]">
+                            <div className="flex-1 h-[3px] mx-2 rounded-full bg-rose-500/30" />
+                            <div className="flex flex-col items-center relative">
+                              <div className="w-8 h-8 rounded-full bg-rose-500/15 text-rose-455 border border-rose-500/30 flex items-center justify-center text-xs font-bold shadow-[0_0_15px_rgba(244,63,94,0.3)] scale-105">
                                 !
                               </div>
-                              <span className="text-[10px] uppercase font-bold tracking-widest text-rose-400 text-center">
-                                Denied
+                              <span className="text-[9px] uppercase font-bold tracking-widest mt-2 text-rose-455 absolute top-8.5">
+                                Rejected
                               </span>
                             </div>
                           </>
+                        )}
+                      </div>
+
+                      {/* Vertical timeline (Mobile) */}
+                      <div className="flex sm:hidden flex-col gap-6 pl-2 relative">
+                        {/* Connecting line */}
+                        <div className="absolute left-[15px] top-3 bottom-3 w-[2px] bg-zinc-800" />
+                        
+                        {statusSteps.map((step, idx) => {
+                          const isCompletedStep = idx < currentIdx || submission.status === "completed";
+                          const isActiveStep = idx === currentIdx && !isRejected;
+
+                          return (
+                            <div key={step.key} className="flex items-center gap-4 relative z-10">
+                              <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 transition-all duration-300 ${
+                                isCompletedStep
+                                  ? "bg-cyan-500 text-zinc-950 shadow-[0_0_15px_rgba(6,182,212,0.6)] scale-105"
+                                  : isActiveStep
+                                  ? "bg-zinc-950 text-cyan-400 border-2 border-cyan-500 shadow-[0_0_15px_rgba(6,182,212,0.4)] animate-pulse"
+                                  : "bg-zinc-950 text-zinc-650 border border-zinc-800"
+                              }`}>
+                                {idx + 1}
+                              </div>
+                              <div className="flex flex-col">
+                                <span className={`text-[10px] uppercase font-bold tracking-widest ${
+                                  isActiveStep ? "text-cyan-400 font-black" : "text-zinc-500"
+                                }`}>
+                                  {step.key === "in-progress" ? "Working" : step.label}
+                                </span>
+                                <span className="text-[9px] text-zinc-500">
+                                  {step.key === "pending"
+                                    ? "Awaiting admin audit"
+                                    : step.key === "in-progress"
+                                    ? "Actively deploying server config"
+                                    : "Server parameters live on host console"}
+                                </span>
+                              </div>
+                            </div>
+                          );
+                        })}
+
+                        {submission.status === "rejected" && (
+                          <div className="flex items-center gap-4 relative z-10">
+                            <div className="w-8 h-8 rounded-full bg-rose-500/15 text-rose-455 border border-rose-500/30 flex items-center justify-center text-xs font-bold shadow-[0_0_15px_rgba(244,63,94,0.3)] scale-105 flex-shrink-0">
+                              !
+                            </div>
+                            <div className="flex flex-col">
+                              <span className="text-[10px] uppercase font-bold tracking-widest text-rose-455">
+                                Rejected
+                              </span>
+                              <span className="text-[9px] text-zinc-500">
+                                Declined due to compliance issues.
+                              </span>
+                            </div>
+                          </div>
                         )}
                       </div>
                     </div>

@@ -339,7 +339,7 @@ export default function CreateFormPage() {
 
             {/* Scrollable list container - Only canvas fields scroll when added */}
             {questions.length > 0 ? (
-              <div className="overflow-y-auto pr-1.5 space-y-4 max-h-[calc(100vh-250px)] lg:max-h-[calc(100vh-225px)] flex-1 min-h-0">
+              <div className="lg:overflow-y-auto pr-1.5 space-y-4 max-h-none lg:max-h-[calc(100vh-225px)] flex-1 min-h-0">
                 <motion.div layout className="space-y-4 pb-4">
                   <AnimatePresence initial={false}>
                     {questions.map((q, index) => {
